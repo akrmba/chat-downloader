@@ -16,3 +16,10 @@ This file records project decisions and technical follow-ups. It must not contai
 - **Reported behavior:** after scrolling, export failed with `snapshot is not defined`.
 - **Cause and fix:** the latest captured snapshot was declared inside the `try` block but used after it to build the final export. Moved its declaration to the enclosing function scope.
 - **Validation status:** diff review only; no tests or live-provider checks run yet.
+
+## 2026-09-25 — Assistant messages missing
+
+- **Reported behavior:** after scrolling, an export contained the user's messages but not the assistant replies.
+- **Finding:** provider selectors could stop after finding one role/type of message, so fallback selectors for other messages were skipped. This is a likely cause based on code inspection; the live page markup has not been inspected.
+- **Change:** combine role-specific and fallback message nodes in document order, skipping overlapping parent/child matches, for ChatGPT, Claude, and Gemini.
+- **Validation status:** code/diff review only; no tests or live-provider checks run yet.

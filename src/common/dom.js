@@ -281,6 +281,25 @@
     return null;
   }
 
+  function mergeMessageNodes(primaryNodes, fallbackNodes) {
+    const merged = primaryNodes.slice();
+    fallbackNodes.forEach(function (candidate) {
+      const overlapsExisting = merged.some(function (existing) {
+        return existing === candidate || existing.contains(candidate) || candidate.contains(existing);
+      });
+      if (!overlapsExisting) {
+        merged.push(candidate);
+      }
+    });
+
+    return merged.sort(function (left, right) {
+      if (left === right) {
+        return 0;
+      }
+      return left.compareDocumentPosition(right) & 4 ? -1 : 1;
+    });
+  }
+
   function findNearestTimeText(element) {
     if (!element || !element.querySelector) {
       return null;
@@ -302,6 +321,7 @@
   const api = {
     extractBlocksFromContainer,
     queryOne,
+    mergeMessageNodes,
     findNearestTimeText,
     readInlineText
   };

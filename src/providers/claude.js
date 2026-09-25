@@ -14,22 +14,19 @@
   }
 
   function findMessageNodes(doc) {
-    const selectors = [
+    const direct = Array.from(doc.querySelectorAll([
       "[data-testid='user-message']",
       "[data-testid='assistant-message']",
-      "[data-message-author-role]",
+      "[data-message-author-role]"
+    ].join(",")));
+    const fallback = Array.from(doc.querySelectorAll([
       "[data-testid*='conversation-turn']",
       "main article"
-    ];
+    ].join(","))).filter(function (node) {
+      return utils.cleanText(node.textContent).length > 0;
+    });
 
-    for (let index = 0; index < selectors.length; index += 1) {
-      const nodes = Array.from(doc.querySelectorAll(selectors[index]));
-      if (nodes.length) {
-        return nodes;
-      }
-    }
-
-    return [];
+    return dom.mergeMessageNodes(direct, fallback);
   }
 
   function detectRole(node) {

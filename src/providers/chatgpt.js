@@ -16,13 +16,11 @@
 
   function findMessageNodes(doc) {
     const direct = Array.from(doc.querySelectorAll("[data-message-author-role]"));
-    if (direct.length) {
-      return direct;
-    }
-
-    return Array.from(doc.querySelectorAll("main article")).filter(function (node) {
+    const fallback = Array.from(doc.querySelectorAll("main article")).filter(function (node) {
       return utils.cleanText(node.textContent).length > 0;
     });
+
+    return dom.mergeMessageNodes(direct, fallback);
   }
 
   function detectRole(node) {

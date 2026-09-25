@@ -15,11 +15,8 @@
 
   function findTurnNodes(doc) {
     const turns = Array.from(doc.querySelectorAll("chat-turn"));
-    if (turns.length) {
-      return turns;
-    }
-
-    return Array.from(doc.querySelectorAll("user-query, model-response"));
+    const individualMessages = Array.from(doc.querySelectorAll("user-query, model-response"));
+    return dom.mergeMessageNodes(turns, individualMessages);
   }
 
   function buildMessagesFromTurn(turnNode, indexOffset) {
