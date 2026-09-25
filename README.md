@@ -8,6 +8,7 @@ Local Chrome extension for exporting the currently open conversation from ChatGP
 - Export formats: Markdown, plain text, JSON, and print-friendly PDF
 - Popup UI plus an injected page-level Export button
 - Local-only processing with no backend
+- Collects long conversations while scrolling the current page, then restores its previous position
 
 ## Load In Chrome
 
@@ -26,3 +27,4 @@ npm test
 
 - `docx` is intentionally deferred.
 - Provider DOM structures can change over time, so the adapters are isolated under `src/providers/`.
+- Long conversations can take longer to collect. Very long captures stop at a safety limit and show a warning if they may be incomplete.

@@ -90,6 +90,7 @@
     name: "Gemini",
     isSupportedLocation,
     isReady,
+    getMessageNodes: findTurnNodes,
     extractChat
   };
 

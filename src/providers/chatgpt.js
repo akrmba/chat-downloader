@@ -82,6 +82,7 @@
     name: "ChatGPT",
     isSupportedLocation,
     isReady,
+    getMessageNodes: findMessageNodes,
     extractChat
   };
 

@@ -137,6 +137,7 @@
     }
 
     await saveSettings(settings);
+    setResult("Collecting the conversation. Long chats may take a little longer...", false);
 
     const extraction = await chrome.tabs.sendMessage(activeTabId, {
       type: constants.messageTypes.extractChat,
@@ -148,6 +149,7 @@
     }
 
     const chat = extraction.chat;
+    const captureWarning = extraction.warning || "";
 
     for (const format of settings.formats) {
       if (format === "pdf") {
@@ -158,6 +160,8 @@
       const artifact = exporters.exportChat(chat, format, settings);
       await downloadBlob(artifact.content, artifact.mimeType, utils.makeFilename(chat, format));
     }
+
+    return captureWarning;
   }
 
   async function init() {
@@ -179,8 +183,8 @@
       setResult("Preparing export...", false);
 
       try {
-        await exportCurrentChat();
-        setResult("Export started. Check your downloads and print dialog.", false);
+        const warning = await exportCurrentChat();
+        setResult(warning || "Export started. Check your downloads and print dialog.", Boolean(warning));
       } catch (error) {
         setResult(error.message || "Export failed.", true);
       } finally {

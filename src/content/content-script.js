@@ -51,11 +51,19 @@
       }
 
       if (message.type === constants.messageTypes.extractChat) {
-        const chat = registry.extractCurrentChat(document, message.options || {});
-        sendResponse({
-          ok: true,
-          chat: chat
+        registry.extractCompleteCurrentChat(document, message.options || {}).then(function (result) {
+          sendResponse({
+            ok: true,
+            chat: result.chat,
+            warning: result.warning
+          });
+        }).catch(function (error) {
+          sendResponse({
+            ok: false,
+            error: error.message || "Unable to export this chat."
+          });
         });
+        return true;
       }
     } catch (error) {
       sendResponse({

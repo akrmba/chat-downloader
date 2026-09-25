@@ -94,6 +94,7 @@
     name: "Claude",
     isSupportedLocation,
     isReady,
+    getMessageNodes: findMessageNodes,
     extractChat
   };
 
