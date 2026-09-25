@@ -10,3 +10,9 @@ This file records project decisions and technical follow-ups. It must not contai
 - **Privacy:** no conversation text or credentials were written to this log. Extraction remains in the extension and no backend was added.
 - **Validation status:** code and diff review only. No automated tests or live-provider browser checks were run. The fix needs a manual check with a long test conversation on each provider.
 - **Known limitation:** provider page structure and loading timing can change; a capture that reaches the safety limit may still be incomplete.
+
+## 2026-09-25 — Snapshot scope correction
+
+- **Reported behavior:** after scrolling, export failed with `snapshot is not defined`.
+- **Cause and fix:** the latest captured snapshot was declared inside the `try` block but used after it to build the final export. Moved its declaration to the enclosing function scope.
+- **Validation status:** diff review only; no tests or live-provider checks run yet.

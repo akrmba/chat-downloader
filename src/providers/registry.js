@@ -190,13 +190,14 @@
     const originalScrollTop = getScrollTop(doc, scroller);
     const collected = [];
     const startedAt = Date.now();
+    let snapshot;
     let warning = "";
 
     try {
       setScrollTop(doc, scroller, 0);
       await delay(captureLimits.initialSettleDelayMs);
 
-      let snapshot = provider.extractChat(doc, options);
+      snapshot = provider.extractChat(doc, options);
       collected.push.apply(collected, snapshot.messages);
 
       for (let step = 0; step < captureLimits.maxSteps; step += 1) {
