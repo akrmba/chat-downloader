@@ -14,7 +14,7 @@ Local Chrome extension for exporting the currently open conversation from ChatGP
 1. Open `chrome://extensions`
 2. Enable Developer mode
 3. Choose **Load unpacked**
-4. Select this folder: `E:\ideation_to_change_life\Extention\chat downloader`
+4. Select the extracted project folder
 
 ## Run Tests
 
