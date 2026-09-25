@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chat Downloader</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="popup">
+      <header class="hero">
+        <p class="eyebrow">Local export</p>
+        <h1>Chat Downloader</h1>
+        <p class="subtle">Export the current chat without leaving the page.</p>
+      </header>
+
+      <section class="panel">
+        <h2>Current page</h2>
+        <p id="provider-status" class="status">Checking active tab...</p>
+      </section>
+
+      <section class="panel">
+        <h2>Formats</h2>
+        <div id="format-list" class="format-list"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Options</h2>
+        <label class="toggle">
+          <input id="include-metadata" type="checkbox">
+          <span>Include metadata</span>
+        </label>
+        <label class="toggle">
+          <input id="include-assets" type="checkbox">
+          <span>Include assets and links</span>
+        </label>
+      </section>
+
+      <section class="panel panel-actions">
+        <button id="export-button" class="primary" type="button">Export current chat</button>
+        <p id="result-message" class="result"></p>
+      </section>
+    </main>
+
+    <script src="../common/constants.js"></script>
+    <script src="../common/utils.js"></script>
+    <script src="../common/model.js"></script>
+    <script src="../export/exporters.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

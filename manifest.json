@@ -1,0 +1,65 @@
+{
+  "manifest_version": 3,
+  "name": "Chat Downloader",
+  "version": "0.1.0",
+  "description": "Export the current conversation from ChatGPT, Gemini, and Claude as Markdown, text, JSON, or print-friendly PDF.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "downloads",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://chatgpt.com/*",
+    "https://chat.openai.com/*",
+    "https://gemini.google.com/*",
+    "https://claude.ai/*"
+  ],
+  "background": {
+    "service_worker": "src/background/background.js"
+  },
+  "action": {
+    "default_title": "Chat Downloader",
+    "default_popup": "src/popup/popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chatgpt.com/*",
+        "https://chat.openai.com/*",
+        "https://gemini.google.com/*",
+        "https://claude.ai/*"
+      ],
+      "js": [
+        "src/common/constants.js",
+        "src/common/utils.js",
+        "src/common/dom.js",
+        "src/common/model.js",
+        "src/providers/chatgpt.js",
+        "src/providers/gemini.js",
+        "src/providers/claude.js",
+        "src/providers/registry.js",
+        "src/content/content-script.js"
+      ],
+      "css": [
+        "src/content/content-script.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "src/export/export-page.html",
+        "src/export/export-page.js",
+        "src/export/export-page.css"
+      ],
+      "matches": [
+        "https://chatgpt.com/*",
+        "https://chat.openai.com/*",
+        "https://gemini.google.com/*",
+        "https://claude.ai/*"
+      ]
+    }
+  ]
+}

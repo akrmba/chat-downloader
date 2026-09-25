@@ -1,0 +1,87 @@
+:root {
+  color-scheme: light;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(180deg, #f5f7fb 0%, #eef2f7 100%);
+  color: #162033;
+}
+
+body {
+  margin: 0;
+  min-width: 360px;
+  background: transparent;
+}
+
+.popup {
+  padding: 18px;
+}
+
+.hero {
+  margin-bottom: 16px;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #4b5563;
+}
+
+.hero h1,
+.panel h2 {
+  margin: 0;
+}
+
+.subtle {
+  margin: 8px 0 0;
+  color: #526072;
+}
+
+.panel {
+  margin-bottom: 12px;
+  padding: 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+.status,
+.result {
+  margin: 8px 0 0;
+  color: #334155;
+}
+
+.format-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.format-option,
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #162033;
+}
+
+.panel-actions {
+  display: grid;
+  gap: 10px;
+}
+
+.primary {
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 16px;
+  background: #0f172a;
+  color: #ffffff;
+  font: 600 14px/1.2 inherit;
+  cursor: pointer;
+}
+
+.primary:disabled {
+  opacity: 0.65;
+  cursor: default;
+}

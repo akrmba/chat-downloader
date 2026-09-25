@@ -1,0 +1,24 @@
+#chat-downloader-button {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 2147483647;
+  border: 0;
+  border-radius: 999px;
+  padding: 12px 16px;
+  background: #111827;
+  color: #ffffff;
+  font: 600 14px/1.2 Arial, sans-serif;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.25);
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+#chat-downloader-button:hover {
+  transform: translateY(-1px);
+}
+
+#chat-downloader-button[disabled] {
+  opacity: 0.65;
+  cursor: default;
+}
